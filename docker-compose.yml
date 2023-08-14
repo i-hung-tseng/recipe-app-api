@@ -1,0 +1,17 @@
+# 指定我們的 docker-compose 的版本
+version: "3.9"
+
+
+# 這邊定義 容器的服務開始，可以有多個 app 
+services:
+  app:
+    build:
+      context: .
+      args:
+        - DEV=true
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
